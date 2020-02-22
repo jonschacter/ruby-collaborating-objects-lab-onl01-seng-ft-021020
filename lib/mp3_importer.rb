@@ -8,17 +8,10 @@ class MP3Importer
     end
 
     def files
-        files = Dir.glob("#{@path}/*.mp3").collect { |file| file.gsub("#{@path}/","") }
+        @files = Dir.glob("#{@path}/*.mp3").collect { |file| file.gsub("#{@path}/","") }
     end
 
     def import
         self.files.each{ |file| Song.new_by_filename(file) }
     end
 end
-
-file_path = "./spec/fixtures/mp3s"
-m = MP3Importer.new(file_path)
-
-#binding.pry
-
-#true
